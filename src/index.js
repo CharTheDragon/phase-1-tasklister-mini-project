@@ -3,6 +3,12 @@ document.addEventListener("DOMContentLoaded", () => {
   
   form.addEventListener('submit', (event) => {
     event.preventDefault()
-    console.log(event.target.new_task_description.value)
+    handleTask(event.target.new_task_description.value)
   })
 });
+
+function handleTask(task){
+  let p = document.createElement('p')
+  p.textContent = task
+  document.querySelector('#tasks').appendChild(p)
+}
