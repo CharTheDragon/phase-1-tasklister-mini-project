@@ -1,14 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector('form')
+  let form = document.querySelector('form')
   
   form.addEventListener('submit', (event) => {
     event.preventDefault()
-    handleTask(event.target.new_task_description.value)
+    createTask(event.target.new_task_description.value)
+    form.reset()
   })
 });
 
-function handleTask(task){
+function createTask(task){
   let p = document.createElement('p')
-  p.textContent = task
+  let btn = document.createElement('button')
+  btn.textContent = 'X'
+  p.textContent = `${task}  `
+  p.appendChild(btn)
   document.querySelector('#tasks').appendChild(p)
+  btn.addEventListener('click', handleDelete)
+}
+
+function handleDelete(event){
+  event.target.parentNode.remove()
 }
